@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserRecourse;
-use App\Models\User;
 use App\Repositories\UserRepository\IUserRepository;
 use Illuminate\Http\Request;
 
