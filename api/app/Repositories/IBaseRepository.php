@@ -104,7 +104,7 @@ interface IBaseRepository
      * @param int|null $page
      * @param array $columns
      * @param string $pageName
-     * @return Collection
+     * @return LengthAwarePaginator
      */
     public function paginate(int $perPage, int $page = null, array $columns = ['*'], string $pageName = 'page'): LengthAwarePaginator;
 }

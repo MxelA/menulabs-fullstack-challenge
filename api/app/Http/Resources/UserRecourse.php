@@ -15,11 +15,11 @@ class UserRecourse extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'        => $this->id,
-            'name'      => $this->name,
-            'email'     => $this->email,
-            'latitude'  => $this->latitude,
-            'longitude' => $this->longitude
+            'id'        => $this->when($this->id != null, $this->id),
+            'name'      => $this->when($this->name != null, $this->name),
+            'email'     => $this->when($this->email != null, $this->email),
+            'latitude'  => $this->when($this->latitude != null, $this->latitude),
+            'longitude' => $this->when($this->longitude != null, $this->longitude)
         ];
     }
 }
