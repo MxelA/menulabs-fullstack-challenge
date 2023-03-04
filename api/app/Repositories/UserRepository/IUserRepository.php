@@ -3,9 +3,9 @@
 namespace App\Repositories\UserRepository;
 
 use App\Repositories\IBaseRepository;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 interface IUserRepository extends IBaseRepository
 {
-    public function getUsersThatNeedToUpdateWeatherData(int $perPage, int $page): LengthAwarePaginator;
+    public function getUsersThatNeedToUpdateWeatherData(int $takeUsers): Collection;
 }

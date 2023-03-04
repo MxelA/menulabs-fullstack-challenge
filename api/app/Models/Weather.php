@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Weather extends Model
 {
     use HasFactory;
-
+    protected $table = 'weathers';
     protected $fillable = [
         'user_id',
         'temp',

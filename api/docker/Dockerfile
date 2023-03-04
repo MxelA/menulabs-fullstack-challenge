@@ -4,7 +4,9 @@ RUN apt-get update
 
 RUN apt-get install -y \
     pkg-config  \
-    libzip-dev
+    libzip-dev \
+    cron \
+    nano
 
 RUN docker-php-ext-install \
     mysqli \
@@ -20,3 +22,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN a2enmod rewrite
 RUN service apache2 restart
+
+RUN echo "* * * * * root cd /var/www/html && php artisan schedule:run >> /dev/null 2>&1" >> /etc/crontab
+RUN crontab /etc/crontab
+ENTRYPOINT ["cron", "-f"]
+#CMD ['/usr/sbin/service cron restart']
+# Create the log file to be able to run tail
+#RUN touch /var/log/cron.log

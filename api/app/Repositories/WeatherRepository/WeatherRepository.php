@@ -18,6 +18,7 @@ class WeatherRepository extends BaseRepository implements IWeatherRepository
     {
         return $this->model->updateOrCreate([
             'user_id'       => $user->id,
+        ], [
             'temp'          => $weatherServiceDto->temp,
             'temp_unit'     => $weatherServiceDto->unit,
             'pressure'      => $weatherServiceDto->pressure,

@@ -5,8 +5,9 @@ namespace App\Repositories\UserRepository;
 use App\Models\User;
 use App\Repositories\BaseRepository;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 
 class UserRepository extends BaseRepository implements IUserRepository
 {
@@ -15,11 +16,18 @@ class UserRepository extends BaseRepository implements IUserRepository
         $this->model = $user;
     }
 
-    public function getUsersThatNeedToUpdateWeatherData(int $perPage, int $page): LengthAwarePaginator
+    public function getUsersThatNeedToUpdateWeatherData(int $takeUsers): Collection
     {
-        $this->model->whereHas('weather', function (Builder $query) {
-            return $query->where('updated_at', '<', Carbon::now()->subHours(1));
-        });
-        return $this->paginate($perPage, $page, ['latitude', 'longitude']);
+        return $this->model
+            ->leftJoin('weathers', 'users.id', '=', 'weathers.user_id')
+            ->select(['users.*'])
+            ->where(function ($query){
+                $query->where('weathers.updated_at','<=', Carbon::now()->addMinutes(-30))
+                    ->orWhere('weathers.updated_at', '=', null);
+            })
+            ->skip(0)
+            ->take($takeUsers)
+            ->get()
+        ;
     }
 }
