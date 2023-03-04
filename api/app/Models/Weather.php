@@ -11,6 +11,7 @@ class Weather extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'temp',
         'temp_unit',
         'pressure',

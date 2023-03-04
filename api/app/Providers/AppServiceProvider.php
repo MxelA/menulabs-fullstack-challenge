@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Repositories\UserRepository\IUserRepository;
-use App\Repositories\UserRepository\UserRepository;
-use App\Services\Weather\IWeatherService;
-use App\Services\Weather\OpenWeatherMapService;
+use App\Services\User\IUserWeatherService;
+use App\Services\User\UserWeatherService;
+use App\Services\WeatherApi\IWeatherApiService;
+use App\Services\WeatherApi\OpenWeatherMapApiService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,7 +17,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(IWeatherService::class, OpenWeatherMapService::class);
+        $this->app->bind(IWeatherApiService::class, OpenWeatherMapApiService::class);
+        $this->app->bind(IUserWeatherService::class, UserWeatherService::class);
     }
 
     /**

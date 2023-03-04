@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserRecourse;
-use App\Jobs\WeatherUpdateJob;
+use App\Jobs\UserWeatherUpdateJob;
 use App\Repositories\UserRepository\IUserRepository;
-use App\Services\Weather\IWeatherService;
+use App\Services\WeatherApi\IWeatherApiService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     private IUserRepository $userRepository;
 
-    public function __construct(IUserRepository $userRepository, IWeatherService $openWeatherMapService)
+    public function __construct(IUserRepository $userRepository, IWeatherApiService $openWeatherMapService)
     {
         $this->userRepository = $userRepository;
         $this->openWeatherMapService = $openWeatherMapService;
@@ -21,11 +21,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $a = $this->userRepository->getUsersThatNeedToUpdateWeatherData(15, 1);
-        dd($a);
-//        WeatherUpdateJob::dispatch();
-        $a = $this->openWeatherMapService->getWeatherByLatLon(-28.471595, 27.542639);
-        //dd($a);
+        UserWeatherUpdateJob::dispatch($this->userRepository);
         return UserRecourse::collection(
             $this->userRepository->paginate(
                 $request->input('perPage', 15),

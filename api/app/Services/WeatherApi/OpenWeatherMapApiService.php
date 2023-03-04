@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services\Weather;
+namespace App\Services\WeatherApi;
 
 use App\DTOs\WeatherServiceDto;
 use App\Exceptions\WeatherServiceErrorException;
 use Illuminate\Support\Facades\Http;
 
-class OpenWeatherMapService implements IWeatherService
+class OpenWeatherMapApiService implements IWeatherApiService
 {
     private string $apiId;
     private string $units = 'standard'; // options:	standard, metric, imperial

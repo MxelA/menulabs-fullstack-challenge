@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\Weather;
+namespace App\Services\WeatherApi;
 
 use App\DTOs\WeatherServiceDto;
 
-interface IWeatherService
+interface IWeatherApiService
 {
     public function getWeatherByLatLon(float $lat, float $lon): WeatherServiceDto;
 }
