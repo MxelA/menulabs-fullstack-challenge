@@ -3,7 +3,6 @@
 const API = {
   async fetchUsers (page, itemsPerPage, sortBy) {
     return new Promise(async resolve => {
-
         const url = `http://localhost/user?page=${page}&perPage=${itemsPerPage}`;
         let response =  await (await fetch(url)).json();
 
@@ -89,11 +88,6 @@ export default {
       min-width="500"
   >
     <v-card>
-<!--      <v-toolbar-->
-<!--          color="blue"-->
-<!--          title="Weather info"-->
-<!--      ></v-toolbar>-->
-<!--      <v-divider></v-divider>-->
       <v-card-text color="blue" v-show="dialogLoading">
         <v-progress-linear
             indeterminate
