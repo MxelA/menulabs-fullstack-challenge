@@ -156,4 +156,14 @@ class BaseRepository implements IBaseRepository
     {
         return $this->model->paginate($perPage, $columns, $pageName, $page);
     }
+
+    /**
+     * @param string|array $relations
+     * @return BaseRepository
+     */
+    public function with(string|array $relations): BaseRepository
+    {
+        $this->model = $this->model->with($relations);
+        return $this;
+    }
 }

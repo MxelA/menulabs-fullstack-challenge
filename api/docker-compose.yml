@@ -24,6 +24,13 @@ services:
             - "6379:6379"
         volumes:
             - redis_data:/data
+    cron:
+        build:
+            context: ./docker
+            dockerfile: cron.dockerfile
+        container_name: fullstack-challenge-cron
+        volumes:
+            - .:/var/www/html
 
 volumes:
     mysql_data:

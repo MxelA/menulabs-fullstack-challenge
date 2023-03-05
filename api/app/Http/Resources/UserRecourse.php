@@ -19,7 +19,8 @@ class UserRecourse extends JsonResource
             'name'      => $this->when($this->name != null, $this->name),
             'email'     => $this->when($this->email != null, $this->email),
             'latitude'  => $this->when($this->latitude != null, $this->latitude),
-            'longitude' => $this->when($this->longitude != null, $this->longitude)
+            'longitude' => $this->when($this->longitude != null, $this->longitude),
+            'weather'   => $this->when($this->weather != null, new WeatherRecourse($this->weather))
         ];
     }
 }

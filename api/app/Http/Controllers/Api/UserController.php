@@ -21,9 +21,8 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        UserWeatherUpdateJob::dispatch($this->userRepository);
         return UserRecourse::collection(
-            $this->userRepository->paginate(
+            $this->userRepository->with('weather')->paginate(
                 $request->input('perPage', 15),
                 $request->input('page', 1),
                 [
