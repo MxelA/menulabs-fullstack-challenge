@@ -30,7 +30,11 @@ import { RouterLink, RouterView } from "vue-router";
       <v-app-bar title="Application bar"></v-app-bar>
 
       <v-main style="min-height: 250px">
-        <RouterView />
+        <v-container
+            class="mb-12"
+        >
+          <RouterView />
+        </v-container>
       </v-main>
     </v-layout>
   </v-card>

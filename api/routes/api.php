@@ -16,5 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::name('api.')->group(function() {
-    Route::get('/', [UserController::class, 'index'])->name('user.index');
+    Route::get('/', [UserController::class, 'index']);
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+    Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
 });
