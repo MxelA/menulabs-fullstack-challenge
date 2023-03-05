@@ -20,13 +20,16 @@ import { RouterLink, RouterView } from "vue-router";
         <v-divider></v-divider>
 
         <v-list density="compact" nav>
-          <v-list-item prepend-icon="mdi-account-multiple" title="Users" value="users">
-            <RouterLink to="/"></RouterLink>
+          <v-list-item prepend-icon="mdi-home-circle" title="Home" value="home" :link="true" href="/">
+          </v-list-item>
+          <v-list-item prepend-icon="mdi-account-multiple" title="Users" value="users" :link="true" href="/users">
           </v-list-item>
         </v-list>
       </v-navigation-drawer>
 
-      <v-main style="height: 250px">
+      <v-app-bar title="Application bar"></v-app-bar>
+
+      <v-main style="min-height: 250px">
         <RouterView />
       </v-main>
     </v-layout>

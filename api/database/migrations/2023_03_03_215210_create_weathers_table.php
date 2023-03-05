@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->decimal('temp', 5, 2);
-            $table->string('temp_unit', '10');
+            $table->string('unit', '10');
             $table->decimal('pressure', 6, 2);
             $table->decimal('humidity', 6, 2);
             $table->timestamps();

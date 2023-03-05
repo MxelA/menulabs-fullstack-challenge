@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         return UserRecourse::collection(
             $this->userRepository->with('weather')->paginate(
-                $request->input('perPage', 15),
+                $request->input('perPage', $request->input('perPage', 5)),
                 $request->input('page', 1),
                 [
                     'id',

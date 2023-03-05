@@ -15,11 +15,11 @@ class WeatherRecourse extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'        => $this->when($this->id != null, $this->id),
-            'temp'      => $this->when($this->temp != null, $this->temp),
-            'temp_unit'     => $this->when($this->temp_unit != null, $this->temp_unit),
-            'pressure'  => $this->when($this->pressure != null, $this->pressure),
-            'humidity' => $this->when($this->humidity != null, $this->humidity)
+            'id'                    => $this->when($this->id != null, $this->id),
+            'temp'                  => $this->when($this->temp != null, $this->temp),
+            'temp_unit_html_code'   => $this->when($this->tempUnitHtmlCode != null, $this->tempUnitHtmlCode),
+            'pressure'              => $this->when($this->pressure != null, $this->pressure),
+            'humidity'              => $this->when($this->humidity != null, $this->humidity)
         ];
     }
 }

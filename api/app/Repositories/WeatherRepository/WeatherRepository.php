@@ -20,7 +20,7 @@ class WeatherRepository extends BaseRepository implements IWeatherRepository
             'user_id'       => $user->id,
         ], [
             'temp'          => $weatherServiceDto->temp,
-            'temp_unit'     => $weatherServiceDto->unit,
+            'unit'          => $weatherServiceDto->unit,
             'pressure'      => $weatherServiceDto->pressure,
             'humidity'      => $weatherServiceDto->humidity
         ]);
