@@ -20,7 +20,7 @@ class UserRepository extends BaseRepository implements IUserRepository
     {
         return $this->model
             ->leftJoin('weathers', 'users.id', '=', 'weathers.user_id')
-            ->select(['users.*'])
+            ->select(['users.id', 'users.latitude', 'users.latitude', 'longitude'])
             ->where(function ($query){
                 $query->where('weathers.updated_at','<=', Carbon::now()->addMinutes(-30))
                     ->orWhere('weathers.updated_at', '=', null);

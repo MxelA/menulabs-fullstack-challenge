@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Database\Factories\WeatherFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -22,6 +24,16 @@ class Weather extends Model
         'pressure',
         'humidity',
     ];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function factory(): Factory
+    {
+        return WeatherFactory::new();
+    }
 
     public function user(): BelongsTo
     {

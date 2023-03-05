@@ -24,7 +24,7 @@ class ExampleTest extends TestCase
 
     public function test_database_works()
     {
-        User::factory(20)->create();
+        User::factory()->count(20)->create();
 
         $this->assertEquals(20, User::all()->count());
     }
