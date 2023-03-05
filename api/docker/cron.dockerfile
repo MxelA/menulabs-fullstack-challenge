@@ -5,8 +5,7 @@ RUN apt-get update
 RUN apt-get install -y \
     pkg-config  \
     libzip-dev \
-    cron \
-    nano
+    cron
 
 RUN docker-php-ext-install \
     mysqli \
