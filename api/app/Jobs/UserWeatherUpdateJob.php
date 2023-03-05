@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Exceptions\WeatherServiceErrorException;
+use App\Exceptions\WeatherApiServiceErrorException;
 use App\Models\User;
 use App\Repositories\UserRepository\IUserRepository;
 use App\Services\User\IUserWeatherService;

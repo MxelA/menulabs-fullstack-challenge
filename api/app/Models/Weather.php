@@ -24,16 +24,11 @@ class Weather extends Model
         'pressure',
         'humidity',
     ];
-
-    /**
-     * Create a new factory instance for the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
-     */
-    protected static function factory(): Factory
-    {
-        return WeatherFactory::new();
-    }
+    protected $casts = [
+        'temp'      => 'float',
+        'pressure'  => 'float',
+        'humidity'  => 'float',
+    ];
 
     public function user(): BelongsTo
     {

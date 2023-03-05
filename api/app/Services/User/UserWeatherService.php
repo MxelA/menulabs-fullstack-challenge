@@ -2,6 +2,7 @@
 
 namespace App\Services\User;
 
+use App\Exceptions\WeatherApiServiceErrorException;
 use App\Models\User;
 use App\Repositories\WeatherRepository\IWeatherRepository;
 use App\Services\WeatherApi\IWeatherApiService;
@@ -20,8 +21,12 @@ class UserWeatherService implements IUserWeatherService
 
     public function updateUserWeather(User $user):bool
     {
-        $weatherData = $this->weatherService->getWeatherByLatLon($user->latitude, $user->longitude);
-        $this->weatherRepository->saveWeatherDataFromApiService($user, $weatherData);
+        try {
+            $weatherData = $this->weatherService->getWeatherByLatLon($user->latitude, $user->longitude);
+            $this->weatherRepository->saveWeatherDataFromApiService($user, $weatherData);
+        } catch (WeatherApiServiceErrorException $e) {
+            return false;
+        }
 
         return true;
     }

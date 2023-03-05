@@ -2,15 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Models\Booking;
-use App\Models\Room;
 use App\Models\User;
 use App\Models\Weather;
-use App\Repositories\BookingRepository\BookingRepository;
 use App\Repositories\UserRepository\UserRepository;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

@@ -3,7 +3,7 @@
 namespace App\Services\WeatherApi;
 
 use App\DTOs\WeatherServiceDto;
-use App\Exceptions\WeatherServiceErrorException;
+use App\Exceptions\WeatherApiServiceErrorException;
 use Illuminate\Support\Facades\Http;
 
 class OpenWeatherMapApiService implements IWeatherApiService
@@ -12,7 +12,7 @@ class OpenWeatherMapApiService implements IWeatherApiService
     private string $units = 'standard'; // options:	standard, metric, imperial
 
     /**
-     * @throws WeatherServiceErrorException
+     * @throws WeatherApiServiceErrorException
      */
     public function __construct()
     {
@@ -20,7 +20,7 @@ class OpenWeatherMapApiService implements IWeatherApiService
         $this->apiId = env('OPEN_WEATHER_APP_ID');
 
         if($this->apiId == null)
-            throw new WeatherServiceErrorException("Environment variable OPEN_WEATHER_APP_ID not set ");
+            throw new WeatherApiServiceErrorException("Environment variable OPEN_WEATHER_APP_ID not set ");
 
         if(env('OPEN_WEATHER_UNITS'))
             $this->units = env('OPEN_WEATHER_UNITS');
@@ -30,7 +30,7 @@ class OpenWeatherMapApiService implements IWeatherApiService
      * @param float $lat
      * @param float $lon
      * @return WeatherServiceDto
-     * @throws WeatherServiceErrorException
+     * @throws WeatherApiServiceErrorException
      */
     public function getWeatherByLatLon(float $lat, float $lon): WeatherServiceDto
     {
@@ -42,7 +42,7 @@ class OpenWeatherMapApiService implements IWeatherApiService
         ]);
 
         if(!$response->successful())
-            throw new WeatherServiceErrorException($response->reason(), $response->status());
+            throw new WeatherApiServiceErrorException($response->reason(), $response->status());
 
         $jsonResponse = json_decode((string) $response->body());
 

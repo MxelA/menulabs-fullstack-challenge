@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 
-class WeatherServiceErrorException extends Exception
+class WeatherApiServiceErrorException extends Exception
 {
     protected $message;
     protected $code;

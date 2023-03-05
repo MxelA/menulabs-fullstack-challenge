@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Exceptions\WeatherServiceErrorException;
+use App\Exceptions\WeatherApiServiceErrorException;
 use App\Jobs\UserWeatherUpdateJob;
 use App\Repositories\UserRepository\IUserRepository;
 use App\Services\User\IUserWeatherService;

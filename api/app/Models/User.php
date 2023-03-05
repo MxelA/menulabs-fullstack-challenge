@@ -53,14 +53,4 @@ class User extends Authenticatable
     {
         return $this->hasOne(Weather::class);
     }
-
-    /**
-     * Create a new factory instance for the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
-     */
-    protected static function factory(): Factory
-    {
-        return UserFactory::new();
-    }
 }
