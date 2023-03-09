@@ -32,8 +32,8 @@ class BasePaginationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'perPage' => 'required|numeric|min:0|max:'.$this->limitPerPage,
-            'page' => 'required|int'
+            'perPage'   => 'required|numeric|min:0|max:'.$this->limitPerPage,
+            'page'      => 'required|int'
         ];
     }
 }

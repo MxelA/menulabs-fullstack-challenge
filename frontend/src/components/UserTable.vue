@@ -2,11 +2,26 @@
 
 const API = {
   async fetchUsers (page, itemsPerPage, sortBy) {
-    return new Promise(async resolve => {
+    return new Promise(async (resolve, reject) => {
         const url = `http://localhost/user?page=${page}&perPage=${itemsPerPage}`;
-        let response =  await (await fetch(url)).json();
+        let response =  await (await fetch(url, {
+          method: "GET",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(async response =>  {
 
-        resolve({ items: response.data, total: response.meta.total });
+          if(await response.ok)
+          {
+            response = await response.json();
+            resolve({ items: response.data, total: response.meta.total });
+          }
+
+          //TODO: set error messages
+        }));
+
     })
   },
 
@@ -14,7 +29,13 @@ const API = {
     return new Promise(async resolve => {
 
       const url = `http://localhost/user/${userId}`;
-      let response =  await (await fetch(url)).json();
+      let response =  await (await fetch(url, {
+        method: "GET",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })).json();
 
       resolve(response.data);
     })
