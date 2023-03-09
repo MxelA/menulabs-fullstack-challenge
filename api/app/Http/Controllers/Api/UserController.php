@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserPaginationRequest;
 use App\Http\Resources\UserRecourse;
 use App\Repositories\UserRepository\IUserRepository;
 use App\Services\WeatherApi\IWeatherApiService;
@@ -17,12 +18,13 @@ class UserController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function index(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function index(UserPaginationRequest $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
+        //dd($request->input('perPage'));
         return UserRecourse::collection(
             $this->userRepository->with('weather')->paginate(
-                $request->input('perPage', $request->input('perPage', 5)),
-                $request->input('page', 1),
+                $request->input('perPage', $request->input('perPage')),
+                $request->input('page'),
                 [
                     'id',
                     'name',
